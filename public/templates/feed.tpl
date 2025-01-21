@@ -69,7 +69,6 @@
 						<div class="d-flex gap-1 post-info text-sm align-items-center p-3">
 							<a class="lh-1 text-decoration-none" href="{config.relative_path}/user/{./user.userslug}">{buildAvatar(./user, "40px", true, "not-responsive")}</a>
 							<div class="post-author d-flex align-items-center gap-1">
-								<a class="d-inline d-lg-none lh-1 text-decoration-none" href="{config.relative_path}/user/{./user.userslug}">{buildAvatar(./user, "16px", true, "not-responsive")}</a>
 								<a class="lh-normal fw-semibold text-nowrap" href="{config.relative_path}/user/{./user.userslug}">{./user.displayname}</a>
 							</div>
 						</div>
