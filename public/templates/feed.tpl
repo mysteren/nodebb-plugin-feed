@@ -65,13 +65,16 @@
 			<ul component="posts" class="list-unstyled" data-nextstart="{nextStart}">
 				{{{ each posts }}}
 				<li component="post" class="shadow-sm mb-3 rounded-2 border posts-list-item  {{{ if ./deleted }}} deleted{{{ else }}}{{{ if ./topic.deleted }}} deleted{{{ end }}}{{{ end }}}{{{ if ./topic.scheduled }}} scheduled{{{ end }}}" data-pid="{./pid}" data-uid="{./uid}">
-					<div class="d-flex justify-content-between py-2 mb-2 gap-1">
-						<a class="lh-1 text-decoration-none" href="{config.relative_path}/user/{./user.userslug}">{buildAvatar(./user, "40px", true, "not-responsive")}</a>
+					<div class="d-flex justify-content-between">
 						<div class="d-flex gap-1 post-info text-sm align-items-center p-3">
+							<a class="lh-1 text-decoration-none" href="{config.relative_path}/user/{./user.userslug}">{buildAvatar(./user, "40px", true, "not-responsive")}</a>
 							<div class="post-author d-flex align-items-center gap-1">
 								<a class="d-inline d-lg-none lh-1 text-decoration-none" href="{config.relative_path}/user/{./user.userslug}">{buildAvatar(./user, "16px", true, "not-responsive")}</a>
 								<a class="lh-normal fw-semibold text-nowrap" href="{config.relative_path}/user/{./user.userslug}">{./user.displayname}</a>
 							</div>
+						</div>
+						
+						<div class="d-flex gap-1 post-info text-sm align-items-center p-3">
 							{{{ if !./isMainPost}}}{./repliedString}{{{ else }}}<span class="timeago text-muted lh-normal" title="{./timestampISO}"></span>{{{ end}}}
 						</div>
 					</div>
