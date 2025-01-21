@@ -65,7 +65,16 @@
 			<ul component="posts" class="list-unstyled" data-nextstart="{nextStart}">
 				{{{ each posts }}}
 				<li component="post" class="shadow-sm mb-3 rounded-2 border posts-list-item  {{{ if ./deleted }}} deleted{{{ else }}}{{{ if ./topic.deleted }}} deleted{{{ end }}}{{{ end }}}{{{ if ./topic.scheduled }}} scheduled{{{ end }}}" data-pid="{./pid}" data-uid="{./uid}">
-
+					<div class="d-flex justify-content-between py-2 mb-2 gap-1">
+						<a class="lh-1 text-decoration-none" href="{config.relative_path}/user/{./user.userslug}">{buildAvatar(./user, "40px", true, "not-responsive")}</a>
+						<div class="d-flex gap-1 post-info text-sm align-items-center p-3">
+							<div class="post-author d-flex align-items-center gap-1">
+								<a class="d-inline d-lg-none lh-1 text-decoration-none" href="{config.relative_path}/user/{./user.userslug}">{buildAvatar(./user, "16px", true, "not-responsive")}</a>
+								<a class="lh-normal fw-semibold text-nowrap" href="{config.relative_path}/user/{./user.userslug}">{./user.displayname}</a>
+							</div>
+							{{{ if !./isMainPost}}}{./repliedString}{{{ else }}}<span class="timeago text-muted lh-normal" title="{./timestampISO}"></span>{{{ end}}}
+						</div>
+					</div>
 					{{{ if (showThumbs && ./topic.thumbs.length)}}}
 					<div class="p-1 position-relative">
 						<div class="overflow-hidden rounded-1" style="max-height: 300px;">
@@ -85,9 +94,9 @@
 					{{{ end }}}
 
 					<div class="d-flex gap-2 p-3">
-						<div class="d-none d-lg-block">
-							<a class="lh-1 text-decoration-none" href="{config.relative_path}/user/{./user.userslug}">{buildAvatar(./user, "40px", true, "not-responsive")}</a>
-						</div>
+	
+							
+				
 						<div class="post-body d-flex flex-column gap-2 flex-grow-1 hover-parent" style="min-width: 0px;">
 							{{{ if ./isMainPost }}}
 							<a class="lh-1 topic-title fw-semibold fs-5 text-reset text-break d-block" href="{config.relative_path}/topic/{./topic.slug}">
@@ -95,13 +104,7 @@
 							</a>
 							{{{ end }}}
 
-							<div class="d-flex gap-1 post-info text-sm align-items-center">
-								<div class="post-author d-flex align-items-center gap-1">
-									<a class="d-inline d-lg-none lh-1 text-decoration-none" href="{config.relative_path}/user/{./user.userslug}">{buildAvatar(./user, "16px", true, "not-responsive")}</a>
-									<a class="lh-normal fw-semibold text-nowrap" href="{config.relative_path}/user/{./user.userslug}">{./user.displayname}</a>
-								</div>
-								{{{ if !./isMainPost}}}{./repliedString}{{{ else }}}<span class="timeago text-muted lh-normal" title="{./timestampISO}"></span>{{{ end}}}
-							</div>
+							
 
 							<div component="post/content" class="content text-sm text-break position-relative truncate-post-content">
 								<a href="{config.relative_path}/post/{./pid}" class="stretched-link"></a>
