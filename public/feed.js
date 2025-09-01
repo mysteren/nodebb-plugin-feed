@@ -1,6 +1,5 @@
 'use strict';
 
-/* globals $, define, ajaxify, config, utils, app */
 define('forum/feed', [
 	'forum/infinitescroll',
 	'categoryFilter',
@@ -9,9 +8,9 @@ define('forum/feed', [
 	'hooks',
 	'helpers',
 ], function (infinitescroll, categoryFilter, api, alerts, hooks, helpers) {
-	var feed = {};
-	var page = 1;
-	var loadedAll = false;
+	const feed = {};
+	let page = 1;
+	let loadedAll = false;
 
 	feed.init = function () {
 		categoryFilter.init($('[component="category/dropdown"]'), {
@@ -121,7 +120,7 @@ define('forum/feed', [
 
 	function toggleShowMoreButtons(feedEl) {
 		feedEl.find('[component="post/content"]').each((index, el) => {
-			if (el.clientHeight < el.scrollHeight) {
+			if (el.clientHeight < el.scrollHeight - 1) {
 				$(el).parent().find('[component="show/more"]').removeClass('hidden');
 			}
 		});
@@ -131,7 +130,7 @@ define('forum/feed', [
 		if (direction < 0) {
 			return;
 		}
-		var params = utils.params();
+		const params = utils.params();
 		page += 1;
 		if (loadedAll) {
 			return;

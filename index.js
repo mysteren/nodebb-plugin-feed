@@ -36,7 +36,7 @@ async function renderFeed(req, res) {
 		]),
 		privileges.categories.canPostTopic(req.uid),
 	]);
-
+	userCids.push(-1);
 	const readableCids = await privileges.categories.filterCids('topics:read', userCids, req.uid);
 
 	if (Array.isArray(cids)) {
@@ -101,7 +101,7 @@ async function renderFeed(req, res) {
 
 	const uniqTids = _.uniq(postData.map(p => p.tid));
 	const [topicData, { upvotes }, bookmarkStatus] = await Promise.all([
-		topics.getTopicsFields(uniqTids, ['tid', 'numThumbs', 'mainPid']),
+		topics.getTopicsFields(uniqTids, ['tid', 'numThumbs', 'thumbs', 'mainPid']),
 		posts.getVoteStatusByPostIDs(pagePids, req.uid),
 		posts.hasBookmarked(pagePids, req.uid),
 	]);
